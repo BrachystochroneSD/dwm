@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
@@ -36,9 +36,9 @@ static const Rule rules[] = {
      *  WM_CLASS(STRING) = instance, class
      *  WM_NAME(STRING) = title
      */
-    /* class      instance    title           tags mask     isfloating   monitor */
-    { "Gimp",     NULL,       NULL,           0,            1,           -1 },
-    { "Firefox",  NULL,       NULL,           1 << 8,       0,           -1 },
+    /* class      instance    title           tags mask     iscentered   isfloating   monitor */
+    { "Gimp",     NULL,       NULL,           0,            0,           1,           -1 },
+    { "floating", NULL,       NULL,           0,            1,           1,           -1 },
 };
 
 /* layout(s) */
@@ -49,21 +49,21 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 #include "vanitygaps.c"
 
 static const Layout layouts[] = {
-	/* symbol     arrange function */
- 	{ "[]=",	tile },			/* Default: Master on left, slaves on right */
-	{ "TTT",	bstack },		/* Master on top, slaves on bottom */
+    /* symbol     arrange function */
+    { "[]=",    tile },         /* Default: Master on left, slaves on right */
+    { "TTT",    bstack },       /* Master on top, slaves on bottom */
 
-	{ "[@]",	spiral },		/* Fibonacci spiral */
-	{ "[\\]",	dwindle },		/* Decreasing in size right and leftward */
+    { "[@]",    spiral },       /* Fibonacci spiral */
+    { "[\\]",   dwindle },      /* Decreasing in size right and leftward */
 
-	{ "H[]",	deck },			/* Master on left, slaves in monocle-like mode on right */
- 	{ "[M]",	monocle },		/* All windows on top of eachother */
+    { "H[]",    deck },         /* Master on left, slaves in monocle-like mode on right */
+    { "[M]",    monocle },      /* All windows on top of eachother */
 
-	{ "|M|",	centeredmaster },		/* Master in middle, slaves on sides */
-	{ ">M>",	centeredfloatingmaster },	/* Same but master floats */
+    { "|M|",    centeredmaster },       /* Master in middle, slaves on sides */
+    { ">M>",    centeredfloatingmaster },   /* Same but master floats */
 
-	{ "><>",	NULL },			/* no layout function means floating behavior */
-	{ NULL,		NULL },
+    { "><>",    NULL },         /* no layout function means floating behavior */
+    { NULL,     NULL },
 };
 
 /* key definitions */
@@ -101,10 +101,10 @@ static Key keys[] = {
     /* { MODKEY|ShiftMask,             XK_i,       incnmaster,     {.i = -1 } }, */
     /* { MODKEY|AltMask,               XK_b,       togglebar,      {0} }, */
     { MODKEY,                       XK_a,       killclient,     {0} },
-    { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+    { MODKEY|ShiftMask,             XK_q,       quit,           {0} },
 
-    { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-    { MODKEY,                       XK_s,      togglesticky,   {0} },
+    { MODKEY|ShiftMask,             XK_space,   togglefloating, {0} },
+    { MODKEY,                       XK_s,       togglesticky,   {0} },
 
     /* TAGS */
     TAGKEYS(                        XK_ampersand,                   0)
@@ -118,14 +118,14 @@ static Key keys[] = {
     TAGKEYS(                        XK_ccedilla,                    8)
 
     /* LAYOUTS */
-    { MODKEY,			    XK_comma,		setlayout,	{.v = &layouts[0]} }, /* tile */
-    { MODKEY|ControlMask,	    XK_comma,		setlayout,	{.v = &layouts[1]} }, /* bstack */
-    { MODKEY,			    XK_semicolon,		setlayout,	{.v = &layouts[2]} }, /* spiral */
-    { MODKEY|ControlMask,	    XK_semicolon,		setlayout,	{.v = &layouts[3]} }, /* dwindle */
-    { MODKEY,			    XK_colon,		setlayout,	{.v = &layouts[4]} }, /* deck */
-    { MODKEY|ControlMask,	    XK_colon,		setlayout,	{.v = &layouts[5]} }, /* monocle */
-    { MODKEY,			    XK_equal,		setlayout,	{.v = &layouts[6]} }, /* centeredmaster */
-    { MODKEY|ControlMask,	    XK_equal,		setlayout,	{.v = &layouts[7]} }, /* centeredfloatingmaster */
+    { MODKEY,               	XK_comma,       setlayout,  {.v = &layouts[0]} }, /* tile */
+    { MODKEY|ControlMask,       XK_comma,       setlayout,  {.v = &layouts[1]} }, /* bstack */
+    { MODKEY,               	XK_semicolon,   setlayout,  {.v = &layouts[2]} }, /* spiral */
+    { MODKEY|ControlMask,       XK_semicolon,   setlayout,  {.v = &layouts[3]} }, /* dwindle */
+    { MODKEY,               	XK_colon,       setlayout,  {.v = &layouts[4]} }, /* deck */
+    { MODKEY|ControlMask,       XK_colon,       setlayout,  {.v = &layouts[5]} }, /* monocle */
+    { MODKEY,               	XK_equal,       setlayout,  {.v = &layouts[6]} }, /* centeredmaster */
+    { MODKEY|ControlMask,       XK_equal,       setlayout,  {.v = &layouts[7]} }, /* centeredfloatingmaster */
 
     /* SPAWN COMMAND */
     /* { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } }, */
@@ -135,14 +135,14 @@ static Key keys[] = {
     { MODKEY,                       XK_parenright,  togglescratch,  {.v = scratchpadcmd } },
 
     /* GAPS */
-    { MODKEY|AltMask,               XK_parenright,    togglegaps,     {0} },
-    { MODKEY|AltMask|ShiftMask,     XK_parenright,    defaultgaps,    {0} },
-    /* { MODKEY|AltMask,               XK_h,       incrgaps,       {.i = +1 } }, */
-    /* { MODKEY|AltMask,               XK_l,       incrgaps,       {.i = -1 } }, */
-    /* { MODKEY|AltMask|ShiftMask,     XK_h,       incrogaps,      {.i = +1 } }, */
-    /* { MODKEY|AltMask|ShiftMask,     XK_l,       incrogaps,      {.i = -1 } }, */
-    /* { MODKEY|AltMask|ControlMask,   XK_h,       incrigaps,      {.i = +1 } }, */
-    /* { MODKEY|AltMask|ControlMask,   XK_l,       incrigaps,      {.i = -1 } }, */
+    { MODKEY|AltMask,               	XK_parenright,  togglegaps,     {0} },
+    { MODKEY|AltMask|ShiftMask,     	XK_parenright,  defaultgaps,    {0} },
+    { MODKEY,   			XK_minus,       incrgaps,       {.i = +2 } },
+    { MODKEY|ControlMask,   		XK_minus,       incrgaps,       {.i = -2 } },
+    { MODKEY,   			XK_dollar,      incrogaps,      {.i = +2 } },
+    { MODKEY|ControlMask,	   	XK_dollar,      incrogaps,      {.i = -2 } },
+    { MODKEY,   	        	XK_mu,       	incrigaps,      {.i = +2 } },
+    { MODKEY|ControlMask,   		XK_mu,       	incrigaps,      {.i = -2 } },
     /* { MODKEY,                       XK_y,      incrihgaps,     {.i = +1 } }, */
     /* { MODKEY,                       XK_o,      incrihgaps,     {.i = -1 } }, */
     /* { MODKEY|ControlMask,           XK_y,      incrivgaps,     {.i = +1 } }, */
@@ -151,12 +151,13 @@ static Key keys[] = {
     /* { MODKEY|AltMask,               XK_o,      incrohgaps,     {.i = -1 } }, */
     /* { MODKEY|ShiftMask,             XK_y,      incrovgaps,     {.i = +1 } }, */
     /* { MODKEY|ShiftMask,             XK_o,      incrovgaps,     {.i = -1 } }, */
+
     { MODKEY,                       XK_agrave, view,           {.ui = ~0 } },
     { MODKEY|ShiftMask,             XK_agrave, tag,            {.ui = ~0 } },
-    { MODKEY,			    XK_Left,	focusmon,	{.i = -1 } },
-    { MODKEY|ShiftMask,		    XK_Left,	tagmon,		{.i = -1 } },
-    { MODKEY,		    	    XK_Right,	focusmon,	{.i = +1 } },
-    { MODKEY|ShiftMask,		    XK_Right,	tagmon,		{.i = +1 } },
+    { MODKEY,               	    XK_Left,    focusmon,   {.i = -1 } },
+    { MODKEY|ShiftMask,     	    XK_Left,    tagmon,     {.i = -1 } },
+    { MODKEY,               	    XK_Right,   focusmon,   {.i = +1 } },
+    { MODKEY|ShiftMask,     	    XK_Right,   tagmon,     {.i = +1 } },
 
     { MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
 };

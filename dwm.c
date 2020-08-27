@@ -121,7 +121,7 @@ struct Client {
   int basew, baseh, incw, inch, maxw, maxh, minw, minh;
   int bw, oldbw;
   unsigned int tags;
-  int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen, issticky;
+  int isfixed, iscentered, isfloating, isurgent, neverfocus, oldstate, isfullscreen, issticky;
   Client *next;
   Client *snext;
   Monitor *mon;
@@ -179,6 +179,7 @@ typedef struct {
   const char *title;
   unsigned int tags;
   int isfloating;
+  int iscentered;
   int monitor;
 } Rule;
 
@@ -353,6 +354,7 @@ applyrules(Client *c)
 
   /* rule matching */
   c->isfloating = 0;
+  c->iscentered = 0;
   c->tags = 0;
   XGetClassHint(dpy, c->win, &ch);
   class    = ch.res_class ? ch.res_class : broken;
@@ -365,6 +367,7 @@ applyrules(Client *c)
         && (!r->instance || strstr(instance, r->instance)))
       {
         c->isfloating = r->isfloating;
+        c->iscentered = r->iscentered;
         c->tags |= r->tags;
         for (m = mons; m && m->num != r->monitor; m = m->next);
         if (m)
@@ -1204,6 +1207,10 @@ manage(Window w, XWindowAttributes *wa)
   updatewindowtype(c);
   updatesizehints(c);
   updatewmhints(c);
+  if (c->iscentered) {
+    c->x = c->mon->mx + (c->mon->mw - WIDTH(c)) / 2;
+    c->y = c->mon->my + (c->mon->mh - HEIGHT(c)) / 2;
+  }
   XSelectInput(dpy, w, EnterWindowMask|FocusChangeMask|PropertyChangeMask|StructureNotifyMask);
   grabbuttons(c, 0);
   if (!c->isfloating)
@@ -2360,8 +2367,10 @@ updatewindowtype(Client *c)
 
   if (state == netatom[NetWMFullscreen])
     setfullscreen(c, 1);
-  if (wtype == netatom[NetWMWindowTypeDialog])
+  if (wtype == netatom[NetWMWindowTypeDialog]) {
+    c->iscentered = 1;
     c->isfloating = 1;
+  }
 }
 
 void
