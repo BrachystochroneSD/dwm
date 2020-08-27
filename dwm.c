@@ -178,8 +178,8 @@ typedef struct {
   const char *instance;
   const char *title;
   unsigned int tags;
-  int isfloating;
   int iscentered;
+  int isfloating;
   int monitor;
 } Rule;
 
