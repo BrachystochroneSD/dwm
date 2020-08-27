@@ -41,9 +41,9 @@ static const Rule rules[] = {
   { NULL, 	"floatingwin",  NULL,           0,            1,             1,             -1,          0,0,625,450,          0 },
   { NULL,  	"transmission", NULL,           0,            1,             1,             -1,          0,0,800,400,          0 },
   { "Pavucontrol",NULL, 	NULL,           0,            1,             1,             -1,          0,0,800,400,          0 },
-  { NULL, 	"album",  	NULL,           0,            1,             1,             -1,          105,10,202,202,       0 },
-  { NULL,  	"cavaviz",	NULL,           0,            1,             1,             -1,          105,230,200,150,      0 },
-  { NULL,  	"ncmpcppwin",	NULL,           0,            1,             1,             -1,          -105,0,625,400,       0 },
+  { NULL, 	"album",  	NULL,           0,            1,             1,             -1,          -105,10,202,202,       0 },
+  { NULL,  	"cavaviz",	NULL,           0,            1,             1,             -1,          -105,230,200,150,      0 },
+  { NULL,  	"ncmpcppwin",	NULL,           0,            1,             1,             -1,          105,0,625,400,       0 },
   { NULL, 	"fzf",  	NULL,           0,            1,             1,             -1,          0,0,725,200,          0 },
 };
 
