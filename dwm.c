@@ -122,6 +122,7 @@ struct Client {
   int bw, oldbw;
   unsigned int tags;
   int isfixed, iscentered, isfloating, isurgent, neverfocus, oldstate, isfullscreen, issticky;
+  int floatborderpx;
   Client *next;
   Client *snext;
   Monitor *mon;
@@ -181,6 +182,8 @@ typedef struct {
   int iscentered;
   int isfloating;
   int monitor;
+  int floatx, floaty, floatw, floath;
+  int floatborderpx;
 } Rule;
 
 /* function declarations */
@@ -369,6 +372,13 @@ applyrules(Client *c)
         c->isfloating = r->isfloating;
         c->iscentered = r->iscentered;
         c->tags |= r->tags;
+        c->floatborderpx = r->floatborderpx;
+        if (r->isfloating) {
+          c->x = r->floatx;
+          c->y = r->floaty;
+          c->w = r->floatw;
+          c->h = r->floath;
+        }
         for (m = mons; m && m->num != r->monitor; m = m->next);
         if (m)
           c->mon = m;
@@ -685,7 +695,7 @@ configurerequest(XEvent *e)
         c->h = ev->height;
       }
       if ((c->x + c->w) > m->mx + m->mw && c->isfloating)
-        c->x = m->mx + (m->mw / 2 - WIDTH(c) / 2); /* center in x direction */
+        c->x = m->mx + (m->mw / 2 - WIDTH(c) / 2); /* center in x direction */ /* integrate the position set by floating rules */
       if ((c->y + c->h) > m->my + m->mh && c->isfloating)
         c->y = m->my + (m->mh / 2 - HEIGHT(c) / 2); /* center in y direction */
       if ((ev->value_mask & (CWX|CWY)) && !(ev->value_mask & (CWWidth|CWHeight)))
@@ -1200,7 +1210,10 @@ manage(Window w, XWindowAttributes *wa)
     c->y = c->mon->wy + (c->mon->wh / 2 - HEIGHT(c) / 2);
   }
 
-  wc.border_width = c->bw;
+  if (c->isfloating)
+    wc.border_width = c->floatborderpx;
+  else
+    wc.border_width = c->bw;
   XConfigureWindow(dpy, w, CWBorderWidth, &wc);
   XSetWindowBorder(dpy, w, scheme[SchemeNorm][ColBorder].pixel);
   configure(c); /* propagates border_width, if size doesn't change */
