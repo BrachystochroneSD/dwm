@@ -40,10 +40,10 @@ static const Rule rules[] = {
   { "Gimp",     NULL,       	NULL,           0,            0,             1,             -1,          50,50,500,500,        0 },
   { NULL, 	"floatingwin",  NULL,           0,            1,             1,             -1,          0,0,625,450,          0 },
   { NULL,  	"transmission", NULL,           0,            1,             1,             -1,          0,0,800,400,          0 },
-  { "Pavucontrol",NULL, 	NULL,           0,            1,             1,             -1,          0,0,800,400,          0 },
-  { NULL, 	"album",  	NULL,           0,            1,             1,             -1,          -105,10,202,202,       0 },
-  { NULL,  	"cavaviz",	NULL,           0,            1,             1,             -1,          -105,230,200,150,      0 },
-  { NULL,  	"ncmpcppwin",	NULL,           0,            1,             1,             -1,          105,0,625,400,       0 },
+  { "Pavucontrol",NULL, 	NULL,           0,            1,             1,             -1,          0,0,550,700,          0 },
+  { NULL, 	"album",  	NULL,           0,            1,             1,             -1,          -310,-90,202,202,     0 },
+  { NULL,  	"cavaviz",	NULL,           0,            1,             1,             -1,          -310,100,200,150,     0 },
+  { NULL,  	"ncmpcppwin",	NULL,           0,            1,             1,             -1,          105,0,625,400,        0 },
   { NULL, 	"fzf",  	NULL,           0,            1,             1,             -1,          0,0,725,200,          0 },
 };
 
