@@ -695,7 +695,7 @@ configurerequest(XEvent *e)
         c->h = ev->height;
       }
       if ((c->x + c->w) > m->mx + m->mw && c->isfloating)
-        c->x = m->mx + (m->mw / 2 - WIDTH(c) / 2); /* center in x direction */ /* integrate the position set by floating rules */
+        c->x = m->mx + (m->mw / 2 - WIDTH(c) / 2); /* center in x direction */
       if ((c->y + c->h) > m->my + m->mh && c->isfloating)
         c->y = m->my + (m->mh / 2 - HEIGHT(c) / 2); /* center in y direction */
       if ((ev->value_mask & (CWX|CWY)) && !(ev->value_mask & (CWWidth|CWHeight)))
@@ -1192,6 +1192,11 @@ manage(Window w, XWindowAttributes *wa)
     applyrules(c);
   }
 
+  if (c->iscentered) {
+    c->x += c->mon->mx + (c->mon->mw - WIDTH(c)) / 2;
+    c->y += c->mon->my + (c->mon->mh - HEIGHT(c)) / 2;
+  }
+
   if (c->x + WIDTH(c) > c->mon->mx + c->mon->mw)
     c->x = c->mon->mx + c->mon->mw - WIDTH(c);
   if (c->y + HEIGHT(c) > c->mon->my + c->mon->mh)
@@ -1220,10 +1225,6 @@ manage(Window w, XWindowAttributes *wa)
   updatewindowtype(c);
   updatesizehints(c);
   updatewmhints(c);
-  if (c->iscentered) {
-    c->x = c->mon->mx + (c->mon->mw - WIDTH(c)) / 2;
-    c->y = c->mon->my + (c->mon->mh - HEIGHT(c)) / 2;
-  }
   XSelectInput(dpy, w, EnterWindowMask|FocusChangeMask|PropertyChangeMask|StructureNotifyMask);
   grabbuttons(c, 0);
   if (!c->isfloating)
