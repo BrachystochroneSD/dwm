@@ -36,15 +36,16 @@ static const Rule rules[] = {
      *  WM_CLASS(STRING) = instance, class
      *  WM_NAME(STRING) = title
      */
-    /* class      instance    title           tags mask     iscentered   isfloating   monitor      float x,y,w,h         floatborderpx*/
-  { "Gimp",     NULL,       	NULL,           0,            0,             1,             -1,          50,50,500,500,        0 },
-  { NULL, 	"floatingwin",  NULL,           0,            1,             1,             -1,          0,0,625,450,          0 },
-  { NULL,  	"transmission", NULL,           0,            1,             1,             -1,          0,0,800,400,          0 },
-  { "Pavucontrol",NULL, 	NULL,           0,            1,             1,             -1,          0,0,550,700,          0 },
-  { NULL, 	"album",  	NULL,           0,            1,             1,             -1,          -310,-90,202,202,     0 },
-  { NULL,  	"cavaviz",	NULL,           0,            1,             1,             -1,          -310,100,200,150,     0 },
-  { NULL,  	"ncmpcppwin",	NULL,           0,            1,             1,             -1,          105,0,625,400,        0 },
-  { NULL, 	"fzf",  	NULL,           0,            1,             1,             -1,          0,0,725,200,          0 },
+    /* class        instance        title           tags mask     iscentered   isfloating   monitor      float x,y,w,h         floatborderpx*/
+  { "Gimp",         NULL,           NULL,           0,            0,             1,             -1,          50,50,500,500,        0 },
+  { NULL,           "floatingwin",  NULL,           0,            1,             1,             -1,          0,0,625,450,          0 },
+  { NULL,           "transmission", NULL,           0,            1,             1,             -1,          0,0,800,400,          0 },
+  { "Pavucontrol",  NULL,           NULL,           0,            1,             1,             -1,          0,0,550,700,          0 },
+  { "Cadence",      NULL,           NULL,           0,            1,             1,             -1,          0,0,663,526,          0 },
+  { NULL,           "album",        NULL,           0,            1,             1,             -1,          -310,-90,202,202,     0 },
+  { NULL,           "cavaviz",      NULL,           0,            1,             1,             -1,          -310,100,200,150,     0 },
+  { NULL,           "ncmpcppwin",   NULL,           0,            1,             1,             -1,          105,0,625,400,        0 },
+  { NULL,           "fzf",          NULL,           0,            1,             1,             -1,          0,0,725,200,          0 },
 };
 
 /* layout(s) */
@@ -103,8 +104,8 @@ static Key keys[] = {
     { MODKEY,                       XK_h,       setmfact,       {.f = -0.05} },
     { MODKEY,                       XK_l,       setmfact,       {.f = +0.05} },
 
-    /* { MODKEY,                       XK_i,       incnmaster,     {.i = +1 } }, */
-    /* { MODKEY|ShiftMask,             XK_i,       incnmaster,     {.i = -1 } }, */
+    { MODKEY,                       XK_i,       incnmaster,     {.i = +1 } },
+    { MODKEY|ShiftMask,             XK_i,       incnmaster,     {.i = -1 } },
     /* { MODKEY|AltMask,               XK_b,       togglebar,      {0} }, */
     { MODKEY,                       XK_a,       killclient,     {0} },
     { MODKEY|ShiftMask,             XK_q,       quit,           {0} },
@@ -124,13 +125,13 @@ static Key keys[] = {
     TAGKEYS(                        XK_ccedilla,                    8)
 
     /* LAYOUTS */
-    { MODKEY,               	XK_comma,       setlayout,  {.v = &layouts[0]} }, /* tile */
+    { MODKEY,                   XK_comma,       setlayout,  {.v = &layouts[0]} }, /* tile */
     { MODKEY|ControlMask,       XK_comma,       setlayout,  {.v = &layouts[1]} }, /* bstack */
-    { MODKEY,               	XK_semicolon,   setlayout,  {.v = &layouts[2]} }, /* spiral */
+    { MODKEY,                   XK_semicolon,   setlayout,  {.v = &layouts[2]} }, /* spiral */
     { MODKEY|ControlMask,       XK_semicolon,   setlayout,  {.v = &layouts[3]} }, /* dwindle */
-    { MODKEY,               	XK_colon,       setlayout,  {.v = &layouts[4]} }, /* deck */
+    { MODKEY,                   XK_colon,       setlayout,  {.v = &layouts[4]} }, /* deck */
     { MODKEY|ControlMask,       XK_colon,       setlayout,  {.v = &layouts[5]} }, /* monocle */
-    { MODKEY,               	XK_equal,       setlayout,  {.v = &layouts[6]} }, /* centeredmaster */
+    { MODKEY,                   XK_equal,       setlayout,  {.v = &layouts[6]} }, /* centeredmaster */
     { MODKEY|ControlMask,       XK_equal,       setlayout,  {.v = &layouts[7]} }, /* centeredfloatingmaster */
 
     /* SPAWN COMMAND */
@@ -141,14 +142,14 @@ static Key keys[] = {
     { MODKEY,                       XK_parenright,  togglescratch,  {.v = scratchpadcmd } },
 
     /* GAPS */
-    { MODKEY|AltMask,               	XK_parenright,  togglegaps,     {0} },
-    { MODKEY|AltMask|ShiftMask,     	XK_parenright,  defaultgaps,    {0} },
-    { MODKEY,   			XK_minus,       incrgaps,       {.i = +2 } },
-    { MODKEY|ControlMask,   		XK_minus,       incrgaps,       {.i = -2 } },
-    { MODKEY,   			XK_dollar,      incrogaps,      {.i = +2 } },
-    { MODKEY|ControlMask,	   	XK_dollar,      incrogaps,      {.i = -2 } },
-    { MODKEY,   	        	XK_mu,       	incrigaps,      {.i = +2 } },
-    { MODKEY|ControlMask,   		XK_mu,       	incrigaps,      {.i = -2 } },
+    { MODKEY|AltMask,                   XK_parenright,  togglegaps,     {0} },
+    { MODKEY|AltMask|ShiftMask,         XK_parenright,  defaultgaps,    {0} },
+    { MODKEY,               XK_minus,       incrgaps,       {.i = +2 } },
+    { MODKEY|ControlMask,           XK_minus,       incrgaps,       {.i = -2 } },
+    { MODKEY,               XK_dollar,      incrogaps,      {.i = +2 } },
+    { MODKEY|ControlMask,       XK_dollar,      incrogaps,      {.i = -2 } },
+    { MODKEY,                   XK_mu,          incrigaps,      {.i = +2 } },
+    { MODKEY|ControlMask,           XK_mu,          incrigaps,      {.i = -2 } },
     /* { MODKEY,                       XK_y,      incrihgaps,     {.i = +1 } }, */
     /* { MODKEY,                       XK_o,      incrihgaps,     {.i = -1 } }, */
     /* { MODKEY|ControlMask,           XK_y,      incrivgaps,     {.i = +1 } }, */
@@ -160,10 +161,10 @@ static Key keys[] = {
 
     { MODKEY,                       XK_agrave, view,           {.ui = ~0 } },
     { MODKEY|ShiftMask,             XK_agrave, tag,            {.ui = ~0 } },
-    { MODKEY,               	    XK_Left,    focusmon,   {.i = -1 } },
-    { MODKEY|ShiftMask,     	    XK_Left,    tagmon,     {.i = -1 } },
-    { MODKEY,               	    XK_Right,   focusmon,   {.i = +1 } },
-    { MODKEY|ShiftMask,     	    XK_Right,   tagmon,     {.i = +1 } },
+    { MODKEY,                       XK_Left,    focusmon,   {.i = -1 } },
+    { MODKEY|ShiftMask,             XK_Left,    tagmon,     {.i = -1 } },
+    { MODKEY,                       XK_Right,   focusmon,   {.i = +1 } },
+    { MODKEY|ShiftMask,             XK_Right,   tagmon,     {.i = +1 } },
 
     { MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
 };
