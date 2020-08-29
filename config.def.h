@@ -97,6 +97,7 @@ static Key keys[] = {
 
     /* Classic shit */
     { MODKEY,                       XK_space,   zoom,           {0} },
+    { MODKEY|ControlMask,           XK_space,   focusmaster,     {0} },
     { MODKEY,                       XK_Tab,     view,           {0} },
     { MODKEY,                       XK_f,       togglefullscr,  {0} },
     { MODKEY,                       XK_j,       focusstack,     {.i = +1 } },

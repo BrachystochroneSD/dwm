@@ -3,6 +3,7 @@ This is My fork of dwm with patch:
   - dwm-ipc-20200729-f04cac6.diff <-- for polybar use
   - dwm-scratchpad-6.2.diff
   - dwm-sticky-6.1.diff
+  - dwm-focusmaster-20200717-bb2e722.diff
   - dwm-swallow-20200807-b2de9b0.diff  <--- not installed yet TODO
   - dwm-actualfullscreen-20191112-cb3f58a.diff
   - dwm-floatrules-6.2.diff + dwm-center-6.2.diff
