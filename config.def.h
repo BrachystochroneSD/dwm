@@ -37,7 +37,8 @@ static const Rule rules[] = {
      *  WM_NAME(STRING) = title
      */
     /* class        instance        title           tags mask     iscentered   isfloating   monitor      float x,y,w,h         floatborderpx*/
-  { "Gimp",         NULL,           NULL,           0,            0,             1,             -1,          50,50,500,500,        0 },
+  { "Gimp",         NULL,           NULL,           0,            0,             0,             -1,          50,50,500,500,        0 },
+  { NULL,           NULL,           "dragon",       0,            1,             0,             -1,          0,0,500,500,          0 },
   { NULL,           "floatingwin",  NULL,           0,            1,             1,             -1,          0,0,625,450,          0 },
   { NULL,           "transmission", NULL,           0,            1,             1,             -1,          0,0,800,400,          0 },
   { "Pavucontrol",  NULL,           NULL,           0,            1,             1,             -1,          0,0,550,700,          0 },
