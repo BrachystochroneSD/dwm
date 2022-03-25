@@ -23,9 +23,12 @@ static const int showsystray             = 1;   /* 0 means no systray */
 static const unsigned int baralpha    = 0xc0;
 static const unsigned int borderalpha = OPAQUE;
 
-static const char *fonts[]          = {"Firacode:fontformat=truetype:size=11:antialias=true:weight=bold",
-  "Font Awesome 6 Free Solid:size=12",
-  "ionicons:pixelsize=12"};
+static const char *fonts[] =
+  {"Firacode:fontformat=truetype:size=11:antialias=true:weight=bold",
+   "Font Awesome 6 Free Solid:size=12",
+   "ionicons:pixelsize=12",
+   "Weather Icons:size=12:weight=bold"
+  };
 static const char dmenufont[]       = "Firacode:size=10";
 static char normbgcolor[]           = "#282828";
 static char normbordercolor[]       = "#444444";
