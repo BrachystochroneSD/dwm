@@ -638,6 +638,8 @@ clientmessage(XEvent *e)
       c->mon = selmon;
       c->next = systray->icons;
       systray->icons = c;
+      XClassHint ch = {"dwmsystray", "dwmsystray"};
+      XSetClassHint(dpy, c->win, &ch);
       XGetWindowAttributes(dpy, c->win, &wa);
       c->x = c->oldx = c->y = c->oldy = 0;
       c->w = c->oldw = wa.width;
