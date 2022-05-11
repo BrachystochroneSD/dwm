@@ -40,7 +40,7 @@ static char selbgcolor[]            = "#fabd2f";
 static char *colors[][3] = {
   /*               fg           bg           border   */
   [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
-  [SchemeSel]  = { selfgcolor,  normbgcolor,  selbordercolor  },
+  [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
 };
 
 static const unsigned int alphas[][3]      = {

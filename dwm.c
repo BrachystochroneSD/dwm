@@ -899,7 +899,7 @@ drawbar(Monitor *m)
 
   if ((w = m->ww - tw - stw - x) > bh) {
     if (m->sel) {
-      drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
+      drw_setscheme(drw, scheme[SchemeNorm]); /* Always draw title in normal scheme */
       if (midtitle) {
         int mid = (m->ww - TEXTW(m->sel->name)) / 2 - x;
         drw_text(drw, x, 0, w, bh, mid, m->sel->name, 0);
