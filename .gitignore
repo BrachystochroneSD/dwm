@@ -5,3 +5,6 @@ patches
 dwm
 dwm-msg
 config.h
+.ccls-cache/
+config.def.h.old
+

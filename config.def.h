@@ -57,17 +57,18 @@ static const Rule rules[] = {
    *  WM_CLASS(STRING) = instance, class
    *  WM_NAME(STRING) = title
    */
-  /* class        instance        title           tags mask     iscentered   isfloating   monitor      float x,y,w,h         floatborderpx*/
-  { "Gimp",         NULL,           NULL,           0,            0,             0,             -1,          50,50,500,500,        0 },
-  { NULL,           NULL,           "dragon",       0,            1,             0,             -1,          0,0,500,500,          0 },
-  { NULL,           "floatingwin",  NULL,           0,            1,             1,             -1,          0,0,625,450,          0 },
-  { NULL,           "transmission", NULL,           0,            1,             1,             -1,          0,0,800,400,          0 },
-  { "Pavucontrol",  NULL,           NULL,           0,            1,             1,             -1,          0,0,550,700,          0 },
-  { "Cadence",      NULL,           NULL,           0,            1,             1,             -1,          0,0,663,526,          0 },
-  { NULL,           "album",        NULL,           0,            1,             1,             -1,          -310,-90,202,202,     0 },
-  { NULL,           "cavaviz",      NULL,           0,            1,             1,             -1,          -310,100,200,150,     0 },
-  { NULL,           "ncmpcppwin",   NULL,           0,            1,             1,             -1,          105,0,625,400,        0 },
-  { NULL,           "fzf",          NULL,           0,            1,             1,             -1,          0,0,725,200,          0 },
+  /* class          instance              title           tags mask     iscentered   isfloating   monitor          float x,y,w,h         floatborderpx*/
+{ "Ardour-6.9.0","ardour-6.9.0","Ardour - Log",0,1,1,-1,0,0,1133,600,0},
+{ "Brave-browser","crx_agpnaabolidpemjhbnenffbgbibjekig",NULL,0,1,1,-1,0,0,1285,789,0},
+  { NULL,           NULL,                 "dragon",       0,            1,             0,             -1,          0,0,500,500,          0 },
+  { NULL,           "floatingwin",        NULL,           0,            1,             1,             -1,          0,0,625,450,          0 },
+  { NULL,           "transmission",       NULL,           0,            1,             1,             -1,          0,0,800,400,          0 },
+  { "Pavucontrol",  NULL,                 NULL,           0,            1,             1,             -1,          0,0,550,700,          0 },
+  { "Cadence",      NULL,                 NULL,           0,            1,             1,             -1,          0,0,663,526,          0 },
+  { NULL,           "album",              NULL,           0,            1,             1,             -1,          -310,-90,202,202,     0 },
+  { NULL,           "cavaviz",            NULL,           0,            1,             1,             -1,          -310,100,200,150,     0 },
+  { NULL,           "ncmpcppwin",         NULL,           0,            1,             1,             -1,          105,0,625,400,        0 },
+  { NULL,           "fzf",                NULL,           0,            1,             1,             -1,          0,0,725,200,          0 },
 };
 
 /* layout(s) */
