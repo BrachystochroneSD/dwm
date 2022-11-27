@@ -58,6 +58,7 @@ static const Rule rules[] = {
    *  WM_NAME(STRING) = title
    */
   /* class          instance              title           tags mask     iscentered   isfloating   monitor          float x,y,w,h         floatborderpx*/
+{ "feh","feh","feh [1 of 1] - /tmp/qrencode_mpv",0,1,1,-1,0,0,137,135,0},
 { "Godot","Godot_Engine","Godot",0,1,1,-1,0,0,1098,570,0},
 { "Ardour-6.9.0","ardour-6.9.0","Ardour - Log",0,1,1,-1,0,0,1133,600,0},
 { "Brave-browser","crx_agpnaabolidpemjhbnenffbgbibjekig",NULL,0,1,1,-1,0,0,1285,789,0},
