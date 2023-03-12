@@ -29,6 +29,7 @@ static const char *fonts[] =
   {"Firacode:fontformat=truetype:size=11:antialias=true:weight=bold",
    "Weather Icons:size=12:style=Regular:weight=bold",
    "ZenOwl Awesome:size=12",
+   "forkawesome:size=12",
   };
 static const char dmenufont[]       = "Firacode:size=10";
 static char normbgcolor[]           = "#282828";
