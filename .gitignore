@@ -8,3 +8,6 @@ config.h
 .ccls-cache/
 config.def.h.old
 
+/pkg/
+/src/
+*.zst
